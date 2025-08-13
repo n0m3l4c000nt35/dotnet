@@ -1,11 +1,26 @@
+﻿namespace TaskManager.Models;
+
+/// <summary>
+/// Represents a single task item.
+/// </summary>
 public class TaskItem
 {
-    public string Description { get; set; }
+    public int Id { get; set; }
+    public string Description { get; set; } = string.Empty;
+    public bool IsCompleted { get; set; }
 
-    public DateTime DueDate { get; set; }
+    public TaskItem() { }
+
+    public TaskItem(int id, string description)
+    {
+        Id = id;
+        Description = description;
+        IsCompleted = false;
+    }
 
     public override string ToString()
     {
-        return $"{Description} (Due: {DueDate:dd/MM/yyyy})";
+        string status = IsCompleted ? "✅" : "❌";
+        return $"{Id,-3} {status}  {Description}";
     }
 }
